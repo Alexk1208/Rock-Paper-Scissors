@@ -5,7 +5,21 @@
 </head>
 <body>
     <script>
-        
+        function randomNum(min, max){
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        function computerPlay(){
+            const randomHand = randomNum(1, 3);//uses randomNum function to create a random number from 1-3
+            if (randomHand == 1){ // if num is 1 returns string rock
+                return 'Rock';
+            }
+            else if (randomHand == 2){// if num is 2 returns string paper
+                return 'Paper'
+            }
+            else{
+                return 'Scissors'// if value isnt 1 or 2 returns scissors
+            }
+        }
     </script>
 </body>
 </html>
