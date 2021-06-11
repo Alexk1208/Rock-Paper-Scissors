@@ -20,71 +20,66 @@
                 return 'Scissors'// if value isnt 1 or 2 returns scissors
             }
         }
-        function game(){
+        let playerWinCount = 0;
+        let robotWinCount = 0;
+        function playRound(playerSelection, computerSelection){
             const win = 'You Win this round!';
             const lose = 'You Lose this round!';
-            const again = 'Go Again!';
+            const again = 'Tie Game!';
             const defaultVal = 'Enter Rock, Paper or Scissors. Must be one of the 3!';
-            function playRound(){
-            /*
-            function takes the robots pick and the persons input
-            once person inputs string 
-            */
+            if (playerSelection == 'rock' && computerSelection == 'Paper'){
+                robotWinCount++;
+                return lose;
+            }
+            else if (playerSelection == 'rock' && computerSelection == 'Rock'){
+                return again;
+            }
+            else if (playerSelection == 'rock' && computerSelection == 'Scissors'){
+                playerWinCount++;
+                return win;
+            }
+            else if (playerSelection == 'paper' && computerSelection == 'Rock'){
+                playerWinCount++;
+                return win;
+            }
+            else if (playerSelection == 'paper' && computerSelection == 'Paper'){
+                return again;
+            }
+            else if (playerSelection == 'paper' && computerSelection == 'Scissors'){
+                robotWinCount++;
+                return lose;
+            }
+            else if (playerSelection == 'scissors' && computerSelection == 'Rock'){
+                robotWinCount++;
+                return lose;
+            }
+            else if (playerSelection == 'scissors' && computerSelection == 'Paper'){
+                playerWinCount++;
+                return win;
+            }
+            else if (playerSelection == 'scissors' && computerSelection == 'Scissors'){
+                return again;
+            }
+            else{
+                return defaultVal;
+            }
+        }
+        function game(){
+            let gameCount = 0;
+            while(gameCount<5){
                 const computerSelection = computerPlay();
                 const playerSelection = prompt('Pick Rock, Paper, or Scissors here: ').toLowerCase();
-                if (playerSelection == 'rock' && computerSelection == 'Paper'){
-                    return lose;
-                }
-                else if (playerSelection == 'rock' && computerSelection == 'Rock'){
-                    return again;
-                }
-                else if (playerSelection == 'rock' && computerSelection == 'Scissors'){
-                    return win;
-                }
-                else if (playerSelection == 'paper' && computerSelection == 'Rock'){
-                    return win;
-                }
-                else if (playerSelection == 'paper' && computerSelection == 'Paper'){
-                    return again;
-                }
-                else if (playerSelection == 'paper' && computerSelection == 'Scissors'){
-                    return lose;
-                }
-                else if (playerSelection == 'scissors' && computerSelection == 'Rock'){
-                    return lose;
-                }
-                else if (playerSelection == 'scissors' && computerSelection == 'Paper'){
-                    return win;
-                }
-                else if (playerSelection == 'scissors' && computerSelection == 'Scissors'){
-                    return again;
-                }
-                else{
-                    return defaultVal;
-                }
-            }
-            let gameCount = 0;
-            let playerWinCount = 0;
-            let robotWinCount = 0;
-            while(gameCount<5){
-                let gameTally = (playRound());
-                console.log(gameTally);
-                if(gameTally == win){
-                    playerWinCount++;
-                }
-                else if(gameTally == lose){
-                    robotWinCount++;
-                }
+                console.log(playRound(playerSelection, computerSelection));
                 gameCount++;
             }
-                if (playerWinCount>robotWinCount){
-                console.log('You Win This Series!!!')
+            if (playerWinCount>robotWinCount){
+            console.log('You Win This Series!!!')
                 }
-                else if (playerWinCount<robotWinCount){
-                console.log('The Robot Won this Time :(')
+            else if (playerWinCount<robotWinCount){
+            console.log('The Robot Won this Time :(')
                 }
-                else{
-                console.log('You Guys Tied!')
+            else{
+            console.log('You Guys Tied!')
                 }   
         }
         console.log(game());
