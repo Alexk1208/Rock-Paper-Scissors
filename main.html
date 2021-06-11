@@ -20,64 +20,72 @@
                 return 'Scissors'// if value isnt 1 or 2 returns scissors
             }
         }
-        function playRound(){
+        function game(){
+            const win = 'You Win this round!';
+            const lose = 'You Lose this round!';
+            const again = 'Go Again!';
+            const defaultVal = 'Enter Rock, Paper or Scissors. Must be one of the 3!';
+            function playRound(){
             /*
             function takes the robots pick and the persons input
             once person inputs string 
             */
-            const computerSelection = computerPlay();
-            const playerSelection = prompt('Pick Rock, Paper, or Scissors here: ').toLowerCase();
-           if (playerSelection == 'rock' && computerSelection == 'Paper'){
-               return 'You Lose!';
-           }
-           else if (playerSelection == 'rock' && computerSelection == 'Rock'){
-               return 'Go Again!';
+                const computerSelection = computerPlay();
+                const playerSelection = prompt('Pick Rock, Paper, or Scissors here: ').toLowerCase();
+                if (playerSelection == 'rock' && computerSelection == 'Paper'){
+                    return lose;
+                }
+                else if (playerSelection == 'rock' && computerSelection == 'Rock'){
+                    return again;
+                }
+                else if (playerSelection == 'rock' && computerSelection == 'Scissors'){
+                    return win;
+                }
+                else if (playerSelection == 'paper' && computerSelection == 'Rock'){
+                    return win;
+                }
+                else if (playerSelection == 'paper' && computerSelection == 'Paper'){
+                    return again;
+                }
+                else if (playerSelection == 'paper' && computerSelection == 'Scissors'){
+                    return lose;
+                }
+                else if (playerSelection == 'scissors' && computerSelection == 'Rock'){
+                    return lose;
+                }
+                else if (playerSelection == 'scissors' && computerSelection == 'Paper'){
+                    return win;
+                }
+                else if (playerSelection == 'scissors' && computerSelection == 'Scissors'){
+                    return again;
+                }
+                else{
+                    return defaultVal;
+                }
             }
-           else if (playerSelection == 'rock' && computerSelection == 'Scissors'){
-               return 'You Win!';
-            }
-            else if (playerSelection == 'paper' && computerSelection == 'Rock'){
-               return 'You Win!';
-            }
-            else if (playerSelection == 'paper' && computerSelection == 'Paper'){
-               return 'Go Again!';
-            }
-            else if (playerSelection == 'paper' && computerSelection == 'Scissors'){
-               return 'You Lose!';
-            }
-            else if (playerSelection == 'scissors' && computerSelection == 'Rock'){
-               return 'You Lose!';
-            }
-            else if (playerSelection == 'scissors' && computerSelection == 'Paper'){
-               return 'You Win!';
-            }
-            else if (playerSelection == 'scissors' && computerSelection == 'Scissors'){
-               return 'Go Again!';
-            }
-            else{
-                return 'Enter Rock, Paper or Scissors. Must be one of the 3!'
-            }
-        }
-        function game(){
             let gameCount = 0;
             let playerWinCount = 0;
             let robotWinCount = 0;
             while(gameCount<5){
-                let gameTally = console.log(playRound());
-                if(gameTally =="You Win!"){
+                let gameTally = (playRound());
+                console.log(gameTally);
+                if(gameTally == win){
                     playerWinCount++;
                 }
-                else if(gameTally == "You Lose!"){
+                else if(gameTally == lose){
                     robotWinCount++;
                 }
                 gameCount++;
             }
-            if (playerWinCount>robotWinCount){
+                if (playerWinCount>robotWinCount){
                 console.log('You Win This Series!!!')
-            }
-            else{
+                }
+                else if (playerWinCount<robotWinCount){
                 console.log('The Robot Won this Time :(')
-            }
+                }
+                else{
+                console.log('You Guys Tied!')
+                }   
         }
         console.log(game());
     </script>
