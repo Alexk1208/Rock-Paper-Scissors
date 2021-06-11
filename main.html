@@ -28,28 +28,28 @@
             const computerSelection = computerPlay();
             const playerSelection = prompt('Pick Rock, Paper, or Scissors here: ').toLowerCase();
            if (playerSelection == 'rock' && computerSelection == 'Paper'){
-               return 'You lost! Paper beats Rock';
+               return 'You Lose!';
            }
            else if (playerSelection == 'rock' && computerSelection == 'Rock'){
                return 'Go Again!';
             }
            else if (playerSelection == 'rock' && computerSelection == 'Scissors'){
-               return 'You Win! Rock beats Scissors';
+               return 'You Win!';
             }
             else if (playerSelection == 'paper' && computerSelection == 'Rock'){
-               return 'You Win! Paper beats Rock';
+               return 'You Win!';
             }
             else if (playerSelection == 'paper' && computerSelection == 'Paper'){
                return 'Go Again!';
             }
             else if (playerSelection == 'paper' && computerSelection == 'Scissors'){
-               return 'You Lose! Scissor beats Paper';
+               return 'You Lose!';
             }
             else if (playerSelection == 'scissors' && computerSelection == 'Rock'){
-               return 'You Lose! Rock beats Scissors';
+               return 'You Lose!';
             }
             else if (playerSelection == 'scissors' && computerSelection == 'Paper'){
-               return 'You Win! Scissor beats Paper';
+               return 'You Win!';
             }
             else if (playerSelection == 'scissors' && computerSelection == 'Scissors'){
                return 'Go Again!';
@@ -59,8 +59,27 @@
             }
         }
         function game(){
-            
+            let gameCount = 0;
+            let playerWinCount = 0;
+            let robotWinCount = 0;
+            while(gameCount<5){
+                let gameTally = console.log(playRound());
+                if(gameTally =="You Win!"){
+                    playerWinCount++;
+                }
+                else if(gameTally == "You Lose!"){
+                    robotWinCount++;
+                }
+                gameCount++;
+            }
+            if (playerWinCount>robotWinCount){
+                console.log('You Win This Series!!!')
+            }
+            else{
+                console.log('The Robot Won this Time :(')
+            }
         }
+        console.log(game());
     </script>
 </body>
 </html>
